@@ -22689,5 +22689,8 @@ a.ui-button:active, .ui-button:active,
   .pthumb h2 span {
     font-size: 16px;
   }
+  .hideImgae {
+    display: none;
+  }
 }
 /*# sourceMappingURL=style.css.map */

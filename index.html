@@ -24,9 +24,74 @@
     <link href="css/odometer-theme-default.css" rel="stylesheet" />
     <link href="css/jquery-ui.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
+    <meta
+      name="description"
+      content="Please join us to share in this special day of love and commitment."
+    />
   </head>
 
   <body>
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        const audio = document.getElementById("myAudio");
+
+        // Try to play immediately
+        const playPromise = audio.play();
+
+        // Catch autoplay errors
+        if (playPromise !== undefined) {
+          playPromise.catch(function (error) {
+            // If autoplay fails, wait for user interaction
+            const unlockAudio = () => {
+              audio.play();
+              document.body.removeEventListener("click", unlockAudio);
+              document.body.removeEventListener("keydown", unlockAudio);
+            };
+            document.body.addEventListener("click", unlockAudio);
+            document.body.addEventListener("keydown", unlockAudio);
+          });
+        }
+      });
+    </script>
+
+    <!-- <script>
+      const video = document.getElementById("myVideo");
+      const control = document.getElementById("videoControl");
+      const audio = document.getElementById("bgAudio");
+
+      // Initial audio pause on play
+      video.addEventListener("play", () => {
+        audio.pause();
+        control.textContent = "Pause";
+      });
+
+      video.addEventListener("pause", () => {
+        // Only resume audio if video hasn't ended
+        if (!video.ended) {
+          audio.play();
+          control.textContent = "Play";
+        }
+      });
+
+      video.addEventListener("ended", () => {
+        audio.play();
+        control.textContent = "Play";
+      });
+
+      control.addEventListener("click", () => {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    </script> -->
+
+    <audio controls autoplay loop id="myAudio" style="display: none">
+      <source src="./1.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
     <!-- start page-wrapper -->
     <div class="page-wrap">
       <!-- start preloader -->
@@ -50,7 +115,7 @@
                   class="col col-xl-3 col-sm-6 col-lg-3 col-12 order-lg-1 order-1"
                 >
                   <div
-                    class="static-hero-img wow fadeInLeftSlow"
+                    class="static-hero-img wow fadeInLeftSlow hideImgae"
                     data-wow-duration="1500ms"
                   >
                     <img
@@ -76,7 +141,7 @@
                         class="slide-text wow fadeInUp"
                         data-wow-duration="1600ms"
                       >
-                        <p>We Are Getting Married In</p>
+                        <p>Counting Down To Forever</p>
                       </div>
                       <div
                         class="slide-date wow fadeInUp"
@@ -104,7 +169,7 @@
                   class="col col-xl-3 col-lg-3 col-sm-6 col-12 order-lg-3 order-2"
                 >
                   <div
-                    class="static-hero-img wow fadeInRightSlow"
+                    class="static-hero-img wow fadeInRightSlow hideImgae"
                     data-wow-duration="1500ms"
                   >
                     <img
@@ -155,9 +220,9 @@
                         <i><img src="images/groom2.svg" alt="" /></i>
                         <h3>Sherin Shaju</h3>
                         <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Urna orci auctor vitae nisl. fringilla pellesque
-                          amet tempus.
+                          S/O Shaju Vargheese & Sini Shaju Athickal (H)
+                          Muvatupuzha Working as Software Engineer at Fingent
+                          Technology pvt Ltd Kochi
                         </p>
                       </div>
                     </div>
@@ -184,9 +249,8 @@
                         <h3>Aleena Maria Roy</h3>
 
                         <p>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Urna orci auctor vitae nisl. fringilla pellesque
-                          amet tempus.
+                          D/O Roy Devasia & Shanty Roy Chettaniyil(H) Idukki
+                          Working as Software Engineer at Wipro Ltd Kochi
                         </p>
                       </div>
                     </div>
@@ -197,10 +261,40 @@
           </div>
         </div>
         <!-- end container -->
+
         <div class="bottom-text marquee">
           <h2>Love is the most Beautiful Feelings in the World.</h2>
         </div>
       </section>
+      <section class="pb-0" id="story">
+        <div class="container">
+          <!-- <div class="wpo-section-title">
+            <h4 class="poort-text poort-in-right">Our Story</h4>
+            <h2 class="poort-text poort-in-right">Our Sweet Love Story</h2>
+          </div> -->
+          <div class="wpo-story-wrap">
+            <!-- <video width="100%" height="100%" controls id="myVideo" autoplay>
+              <source src="./1.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video> -->
+            <div class="video-container">
+              <img
+                id="loadingImage"
+                src="./1.png"
+                alt="Loading..."
+                width="100%"
+                height="100%"
+              />
+              <video id="myVideo" autoplay>
+                <source src="./1.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div id="videoControl" class="controls">Play</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- end couple-section -->
       <!-- start wpo-story-section -->
       <section class="wpo-story-section-s2 section-padding pb-0" id="story">
@@ -337,6 +431,131 @@
         position: absolute;
       }
     </style>
+
+    <style>
+      .video-container {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      video {
+        width: 100%;
+        display: block;
+      }
+
+      .controls {
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 8px 14px;
+        border-radius: 6px;
+        color: white;
+        cursor: pointer;
+        font-family: sans-serif;
+        font-size: 14px;
+        user-select: none;
+      }
+
+      .controls:hover {
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      /* Loading Image */
+      #loadingImage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: block;
+        object-fit: none;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <script>
+      const video = document.getElementById("myVideo");
+      const control = document.getElementById("videoControl");
+      const audio = document.getElementById("myAudio");
+      const loadingImage = document.getElementById("loadingImage");
+
+      // Initial audio pause on play
+      video.addEventListener("play", () => {
+        audio.pause();
+        control.textContent = "Pause";
+        loadingImage.style.display = "none"; // Hide loading image once video starts
+      });
+
+      video.addEventListener("pause", () => {
+        if (!video.ended) {
+          audio.play();
+          control.textContent = "Play";
+        }
+      });
+
+      video.addEventListener("ended", () => {
+        audio.play();
+        control.textContent = "Play";
+      });
+
+      // Show loading image while video is loading
+      video.addEventListener("waiting", () => {
+        loadingImage.style.display = "block"; // Show image when video is buffering
+      });
+
+      // Hide loading image once video metadata is loaded
+      video.addEventListener("loadeddata", () => {
+        loadingImage.style.display = "none"; // Hide loading image once video is ready
+      });
+
+      control.addEventListener("click", () => {
+        if (video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    </script>
+
+    <!-- <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const video = document.getElementById("myVideo");
+        const control = document.getElementById("videoControl");
+        const audio = document.getElementById("myAudio");
+          const loadingImage = document.getElementById("loadingImage");
+
+
+        video.addEventListener("play", () => {
+          audio.pause();
+          control.textContent = "Pause";
+        });
+
+        video.addEventListener("pause", () => {
+          if (!video.ended) {
+            audio.play();
+            control.textContent = "Play";
+          }
+        });
+
+        video.addEventListener("ended", () => {
+          audio.play();
+          control.textContent = "Play";
+        });
+
+        control.addEventListener("click", () => {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        });
+      });
+    </script> -->
 
     <!-- All JavaScript files
     ================================================== -->
